@@ -1,0 +1,35 @@
+# Build Dependencies for Pandas
+# Install these dependencies before building Pandas from source
+# Usage: pip install -r requirements-build.txt
+
+# Build system requirements
+meson-python>=0.17.1,<1
+meson>=1.2.1,<2
+ninja>=1.11.0
+wheel>=0.38.0
+
+# Compilation requirements
+Cython>=3.0.0,<4.0.0a0
+
+# NumPy - Force version 2.0+ for compatibility
+numpy>=2.0.0
+
+# Version management
+versioneer[toml]>=0.28
+
+# Runtime dependencies (required for build)
+python-dateutil>=2.8.2
+pytz>=2024.2
+
+# Conditional dependencies (platform specific)
+# tzdata is required on Windows and Emscripten
+# Install manually if needed: pip install tzdata
+
+# Testing dependencies (optional but recommended)
+pytest>=8.3.4
+hypothesis>=6.116.0
+pytest-xdist>=3.6.1
+
+# Development tools (optional)
+setuptools>=65.5.1  # Still used for some tooling
+build>=0.10.0  # For building wheels with python -m build
