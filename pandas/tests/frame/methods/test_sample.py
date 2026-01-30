@@ -116,9 +116,21 @@ class TestSample:
     def test_sample_negative_weights(self, obj):
         # Check won't accept negative weights
         bad_weights = [-0.1] * 10
-        msg = "weight vector many not include negative values"
+        msg = "weight vector may not include negative values"
         with pytest.raises(ValueError, match=msg):
             obj.sample(n=3, weights=bad_weights)
+
+    def test_sample_negative_weights_error_message(self, obj):
+        # Test that error message for negative weights is grammatically correct
+        # This test would fail with the old typo "many" and pass with "may"
+        bad_weights = [-0.5] * 10
+        with pytest.raises(ValueError) as exc_info:
+            obj.sample(n=3, weights=bad_weights)
+        
+        error_message = str(exc_info.value)
+        # Verify the correct word "may" is used, not "many"
+        assert "may not include negative values" in error_message
+        assert "many not include negative values" not in error_message
 
     def test_sample_inf_weights(self, obj):
         # Check inf and -inf throw errors:
