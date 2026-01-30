@@ -1,13 +1,13 @@
 import argparse
 import os
 
-from Cython import Tempita
+from Cython.Tempita import sub
 
 
 def process_tempita(pxifile, outfile) -> None:
     with open(pxifile, encoding="utf-8") as f:
         tmpl = f.read()
-    pyxcontent = Tempita.sub(tmpl)
+    pyxcontent = sub(tmpl)
 
     with open(outfile, "w", encoding="utf-8") as f:
         f.write(pyxcontent)
